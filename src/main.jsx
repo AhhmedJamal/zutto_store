@@ -3,7 +3,7 @@ import App from "./App.jsx";
 import Cart from "./pages/Cart.jsx";
 import Login from "./pages/Login.jsx";
 import SignUp from "./pages/SignUp.jsx";
-import NotPage from "./pages/NotPage.jsx";
+import NotFoundPage from "./pages/NotFoundPage.jsx";
 import CheckInternet from "./components/CheckInternet.jsx";
 import store from "./store/store.js";
 import Home from "./pages/Home.jsx";
@@ -14,13 +14,19 @@ import { Provider } from "react-redux";
 import { ThemeProvider } from "@material-tailwind/react";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
+
+import CategoryPage from "./pages/CategoryPage.jsx";
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <NotPage />,
+    errorElement: <NotFoundPage />,
     children: [
-      { index: true, element: <Home /> },
+      {
+        index: true,
+        element: <Home />,
+      },
       {
         path: "cart",
         element: <Cart />,
@@ -30,8 +36,12 @@ const router = createBrowserRouter([
         element: <Settings />,
       },
       {
-        path: "Profile",
+        path: "profile",
         element: <Profile />,
+      },
+      {
+        path: "/:name",
+        element: <CategoryPage />,
       },
     ],
   },
@@ -45,7 +55,7 @@ const router = createBrowserRouter([
   },
   {
     path: "*",
-    element: <NotPage />,
+    element: <NotFoundPage />,
   },
 ]);
 

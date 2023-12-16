@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { closeModel } from "../store/model/modelSlice";
 import { motion, AnimatePresence } from "framer-motion";
+import DetailsProduct from "./detailsProduct";
 
 // eslint-disable-next-line react/prop-types
 const Model = () => {
@@ -9,7 +10,7 @@ const Model = () => {
   const handleDragEnd = (event, info) => {
     const threshold = 100;
     if (info.point.y > threshold) {
-      dispatch(closeModel(false));
+      dispatch(closeModel({ show: false }));
     }
   };
   return (
@@ -20,7 +21,7 @@ const Model = () => {
           animate={{ background: "rgba(22, 22, 22, 0.49)" }}
           exit={{ background: "rgba(22, 22, 22, 0.49)" }}
           transition={{ duration: 0.3 }}
-          className="fixed z-20 top-0 w-screen h-[100vh]  container"
+          className="fixed z-20 top-0 w-screen h-[100vh] container "
         >
           <motion.div
             initial={{ y: "100%" }}
@@ -33,14 +34,11 @@ const Model = () => {
             className=" fixed bottom-0 z-2s0"
           >
             <div
-              className=" relative    bg-white w-screen  before:content-[''] 
-             before:bg-gray-500 before:rounded-xl  before:self-center before:w-5 before:m-1 before:h-[3px] items-start rounded-t-2xl flex flex-col  container h-[80vh]"
+              className=" relative px-2  bg-white w-[calc(100vw-9px)]  before:content-[''] 
+             before:bg-gray-600 before:rounded-xl  before:self-center before:w-5
+              before:m-1 before:h-[3px] items-start rounded-t-2xl flex flex-col container  h-fit"
             >
-              <button
-                onClick={() => {
-                  dispatch(closeModel(false));
-                }}
-              ></button>
+              <DetailsProduct />
             </div>
           </motion.div>
         </motion.div>

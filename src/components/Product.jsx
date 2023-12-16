@@ -1,15 +1,14 @@
 import { Card, CardBody } from "@material-tailwind/react";
 import Star from "../assets/star.png";
 import { useDispatch } from "react-redux";
-import { closeModel } from "../store/model/modelSlice";
+import { openModel } from "../store/model/modelSlice";
 
 // eslint-disable-next-line react/prop-types
-const Product = ({ img, title, price, rating, description }) => {
-  // const model = useSelector((state) => state.model.show);
+const Product = ({ id, img, title, price, rating, description }) => {
   const dispatch = useDispatch();
 
   return (
-    <Card className="rounded-none shadow-md relative ">
+    <Card className="rounded-none shadow-md relative flex justify-between">
       <img
         src={img}
         alt="card-image"
@@ -31,21 +30,20 @@ const Product = ({ img, title, price, rating, description }) => {
             <img src={Star} alt="Star" className="w-3 ml-1" />
           </div>
           {rating > 4.3 && (
-            <div className="bg-primary text-white px-[3px] py-[1.5px] rounded-md text-[7px] text-center w-fit">
+            <div className="bg-primary text-white px-[4px] py-[2px] pt-[1px] rounded text-[10px] text-center w-fit">
               express
             </div>
           )}
         </div>
+        <button
+          onClick={() => {
+            dispatch(openModel({ show: true, id: id }));
+          }}
+          className="bg-gray-200 text-[12px] text-primary font-bold p-1 pb-[3px] mt-2 rounded-md  w-full"
+        >
+          Details
+        </button>
       </CardBody>
-
-      <button
-        onClick={() => {
-          dispatch(closeModel(true));
-        }}
-        className="bg-gray-200 text-[11px] text-primary font-bold pt-[3px] rounded-md m-2"
-      >
-        Details
-      </button>
     </Card>
   );
 };

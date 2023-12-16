@@ -180,7 +180,7 @@ const NavBar = () => {
       </div>
       <Collapse
         open={isNavOpen}
-        className="overflow-scroll  text-dark-d100 rounded mt-2 bg-primary"
+        className="overflow-scroll  text-dark-d100 rounded mt-2 bg-white"
       >
         <div className="flex flex-col md:hidden">
           <Menu open={isMenuOpen2} handler={setIsMenuOpen2}>
@@ -190,7 +190,11 @@ const NavBar = () => {
                 className="text-[12px]   sm:text-[11px] text-start p-2"
               >
                 Hello,
-                {email ? <span className="font-bold text-[13px]">{email}</span> : "sign in"}
+                {email ? (
+                  <span className="font-bold text-[13px]">{email}</span>
+                ) : (
+                  "sign in"
+                )}
                 <br />
                 <div className="flex items-center gap-2">
                   Account & List

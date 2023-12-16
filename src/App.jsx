@@ -4,6 +4,8 @@ import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./config/firebase";
 import { ToastContainer, toast } from "react-toastify";
+import Categories from "./components/Categories";
+import Model from "./components/Model";
 
 const App = () => {
   const router = useNavigate();
@@ -33,11 +35,14 @@ const App = () => {
       window.removeEventListener("popstate", handleBackButton);
       unsubscribe();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <div className="container m-auto overflow-y-scroll h-[100vh]">
+    <div className="container m-auto overflow-y-scroll h-[100vh] px-2">
       <ToastContainer />
+      <Model />
       <NavBar />
+      <Categories />
       <Outlet />
     </div>
   );

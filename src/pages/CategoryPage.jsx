@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
-import Product from "./Product";
-import Shimmer from "./Shimmer";
-const ProductList = () => {
+import { useParams } from "react-router-dom";
+import Product from "../components/Product";
+import Shimmer from "../components/Shimmer";
+
+const CategoryPage = () => {
+  const { name } = useParams();
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    fetch("https://dummyjson.com/products")
+    fetch(`https://dummyjson.com/products/category/${name}`)
       .then((res) => res.json())
       .then((data) => setProducts(data.products));
-  }, []);
+  }, [name]);
+
   return (
     <div className="  grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:mx-0  pb-3 mt-2">
       {products.length !== 0 ? (
@@ -40,4 +44,4 @@ const ProductList = () => {
   );
 };
 
-export default ProductList;
+export default CategoryPage;
