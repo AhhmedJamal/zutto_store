@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { closeModel } from "../store/model/modelSlice";
 import { motion, AnimatePresence } from "framer-motion";
-import DetailsProduct from "./detailsProduct";
+import DetailsProduct from "./Details";
 
 // eslint-disable-next-line react/prop-types
 const Model = () => {
