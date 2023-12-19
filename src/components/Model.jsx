@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { closeModel } from "../store/model/modelSlice";
 import { motion, AnimatePresence } from "framer-motion";
-import DetailsProduct from "./Details";
+
 
 // eslint-disable-next-line react/prop-types
 const Model = () => {
@@ -38,7 +38,7 @@ const Model = () => {
              before:bg-gray-600 before:rounded-xl  before:self-center before:w-5
               before:m-1 before:h-[3px] items-start rounded-t-2xl flex flex-col container  h-fit"
             >
-              <DetailsProduct />
+              {/* <DetailsProduct /> */}
             </div>
           </motion.div>
         </motion.div>

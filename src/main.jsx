@@ -1,4 +1,11 @@
 import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Provider } from "react-redux";
+import { ThemeProvider } from "@material-tailwind/react";
+import "react-toastify/dist/ReactToastify.css";
+import "./App.css";
+
+// Import your components and store
 import App from "./App.jsx";
 import Cart from "./pages/Cart.jsx";
 import Login from "./pages/Login.jsx";
@@ -9,14 +16,11 @@ import store from "./store/store.js";
 import Home from "./pages/Home.jsx";
 import Settings from "./pages/Settings.jsx";
 import Profile from "./pages/Profile.jsx";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Provider } from "react-redux";
-import { ThemeProvider } from "@material-tailwind/react";
-import "react-toastify/dist/ReactToastify.css";
-import "./App.css";
-
 import CategoryPage from "./pages/CategoryPage.jsx";
+import Favorite from "./pages/Favorite.jsx";
+import DetailsProduct from "./pages/DetailsProduct.jsx";
 
+// Create BrowserRouter
 const router = createBrowserRouter([
   {
     path: "/",
@@ -40,8 +44,16 @@ const router = createBrowserRouter([
         element: <Profile />,
       },
       {
+        path: "favorite",
+        element: <Favorite />,
+      },
+      {
         path: "/:name",
         element: <CategoryPage />,
+      },
+      {
+        path: ":name/product/:id",
+        element: <DetailsProduct />,
       },
     ],
   },
@@ -59,6 +71,7 @@ const router = createBrowserRouter([
   },
 ]);
 
+// Render the application with transitions
 ReactDOM.createRoot(document.getElementById("root")).render(
   <>
     <Provider store={store}>

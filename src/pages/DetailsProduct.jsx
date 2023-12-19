@@ -1,0 +1,165 @@
+import { Carousel, IconButton } from "@material-tailwind/react";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { GoStarFill } from "react-icons/go";
+import { addToCart } from "../store/cart/cartSlice";
+import { useParams, useNavigate } from "react-router-dom";
+import ShimmerDetails from "../components/Shimmer";
+import { IoMdArrowBack } from "react-icons/io";
+const DetailsProduct = () => {
+  const [products, setProducts] = useState({});
+  const router = useNavigate();
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const calculateDiscountedPrice = (originalPrice, discountPercentage) => {
+    const discountAmount = (originalPrice * discountPercentage) / 100;
+    const discountedPrice = originalPrice - discountAmount;
+    return parseFloat(discountedPrice).toFixed(0);
+  };
+
+  const handleCart = () => {
+   
+    dispatch(addToCart(products));
+  };
+  useEffect(() => {
+    fetch(`https://dummyjson.com/products/${id}`)
+      .then((res) => res.json())
+      .then((data) => setProducts(data));
+  }, [id]);
+
+  return (
+    <>
+      <IoMdArrowBack
+        size={30}
+        className=" m-4 self-start"
+        onClick={() => {
+          router(-1);
+        }}
+      />
+      {products.length !== 0 ? (
+        <div>
+          <div className="p-8 pt-0 mt-4 lg:flex lg:justify-between  lg:mt-[80px] ">
+            <Carousel
+              className="rounded-xl  w-full h-[200px] bg-reds-300 lg:w-[600px] mb-3"
+              navigation={({ setActiveIndex, activeIndex, length }) => (
+                <div className="absolute bottom-1 left-2/4  flex -translate-x-2/4 gap-2">
+                  {new Array(length).fill("").map((_, i) => (
+                    <span
+                      key={i}
+                      className={`block h-[4px] cursor-pointer rounded-2xl transition-all content-['']  ${
+                        activeIndex === i ? "w-4 bg-primary" : "w-4 bg-gray-400"
+                      }`}
+                      onClick={() => setActiveIndex(i)}
+                    />
+                  ))}
+                </div>
+              )}
+              prevArrow={({ handlePrev }) => (
+                <IconButton
+                  variant="text"
+                  color="white"
+                  size="lg"
+                  onClick={handlePrev}
+                  className={`!absolute top-2/4 left-0 lg:!left-2  -translate-y-2/4  ${
+                    products?.images?.length == 1 && "hidden"
+                  }`}
+                >
+                  <svg
+                    className="w-6 h-6 text-primary dark:text-white"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 8 14"
+                  >
+                    <path
+                      stroke="currentColor"
+                      d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13"
+                    />
+                  </svg>
+                </IconButton>
+              )}
+              nextArrow={({ handleNext }) => (
+                <IconButton
+                  variant="text"
+                  color="white"
+                  size="lg"
+                  onClick={handleNext}
+                  className={`!absolute top-2/4 !right-0 lg:!right-6  -translate-y-2/4 ${
+                    products?.images?.length == 1 && "hidden"
+                  }`}
+                >
+                  <svg
+                    className="w-6 h-6 text-primary dark:text-white"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 8 14"
+                  >
+                    <path
+                      stroke="currentColor"
+                      d="m1 13 5.7-5.326a.909.909 0 0 0 0-1.348L1 1"
+                    />
+                  </svg>
+                </IconButton>
+              )}
+              loop={true}
+            >
+              {products.images?.map((item, index) => {
+                return (
+                  <img
+                    key={index}
+                    src={item}
+                    alt="image 1"
+                    className="h-full  m-auto"
+                  />
+                );
+              })}
+            </Carousel>
+            <div className="lg:w-[300px]">
+              <h1 className="font-bold text-[20px]">{products.title}</h1>
+              <p className="text-[13px]">
+                $
+                {calculateDiscountedPrice(
+                  products.price,
+                  products.discountPercentage
+                )}{" "}
+                <del>${products.price} </del>
+              </p>
+
+              <p className="text-[12px]">brand:{products.brand}</p>
+              <p className="text-[12px]">
+                stock:
+                <span
+                  className={`${
+                    products.stock > 20 ? "text-light-blue-500" : "text-red-500"
+                  }`}
+                >
+                  {products.stock}
+                </span>
+              </p>
+              <div className="flex items-center ">
+                <p className="text-[16px] pt-[2px] mr-2">{products.rating}</p>
+                <GoStarFill className="text-orange-400" />
+              </div>
+              <p className="text-gray-600 text-[12px] leading-4 mt-2">
+                {products.description}
+              </p>
+              <button
+                onClick={handleCart}
+                className="bg-primary w-full text-white rounded-md my-3 p-1"
+              >
+                Add To Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="p-5 lg:p-0">
+          <ShimmerDetails is={true} />
+        </div>
+      )}
+    </>
+  );
+};
+
+export default DetailsProduct;

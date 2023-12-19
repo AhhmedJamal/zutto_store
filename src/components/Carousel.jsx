@@ -1,4 +1,5 @@
 import { Carousel } from "@material-tailwind/react";
+
 const CarouselDefault = () => {
   return (
     <Carousel
@@ -11,7 +12,7 @@ const CarouselDefault = () => {
             <span
               key={i}
               className={`block h-[2px] cursor-pointer rounded-2xl transition-all content-['']  ${
-                activeIndex === i ? "w-4 bg-primary" : "w-2 bg-white"
+                activeIndex === i ? "w-4 bg-primary" : "w-2 bg-gray-400"
               }`}
               onClick={() => setActiveIndex(i)}
             />

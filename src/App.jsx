@@ -6,6 +6,7 @@ import { auth } from "./config/firebase";
 import { ToastContainer, toast } from "react-toastify";
 import Categories from "./components/Categories";
 import Model from "./components/Model";
+import BottomBar from "./components/BottomBar";
 
 const App = () => {
   const router = useNavigate();
@@ -38,12 +39,13 @@ const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <div className="container m-auto overflow-y-scroll h-[100vh] px-2">
+    <div className="container m-auto  overflow-y-scroll h-[100vh] pb-10">
       <ToastContainer />
       <Model />
       <NavBar />
       <Categories />
       <Outlet />
+      <BottomBar />
     </div>
   );
 };

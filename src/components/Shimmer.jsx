@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 
-const ShimmerDetails = () => {
+// eslint-disable-next-line react/prop-types
+const ShimmerDetails = ({ is }) => {
   const shimmer = (
     <motion.div
       initial={{ opacity: 0.5, scaleX: 0, translateX: "-100%" }}
@@ -16,100 +17,68 @@ const ShimmerDetails = () => {
   );
 
   return (
-    <div
-      style={{
-        width: "100%",
-        position: "relative",
-        overflow: "hidden",
-        borderRadius: "8px",
-      }}
-    >
-      <div
-        style={{
-          width: "100%",
-          position: "relative",
-          marginBottom: "16px",
-          overflow: "hidden",
-          borderRadius: "8px",
-        }}
-      >
-        {shimmer}
-        {/* Your card content goes here */}
+    <>
+      {is ? (
         <div
-          style={{
-            backgroundColor: "white",
-            padding: "16px",
-
-            zIndex: 1,
-            height: "100px",
-          }}
-        ></div>
-      </div>
-      {/*  */}
-      <div
-        style={{
-          width: "100%",
-          height: "10px",
-          position: "relative",
-          marginBottom: "5px",
-          overflow: "hidden",
-          borderRadius: "8px",
-        }}
-      >
-        {shimmer}
-        {/* Another set of details */}
+          className={`h-[60vh]  lg:w-[100%] flex flex-col lg:flex-row lg:gap-10 lg:items-end  justify-between w-full relative overflow-hidden rounded-[8px]`}
+        >
+          <div className="w-full relative mb-[16px] overflow-hidden rounded-[8px]">
+            {shimmer}
+            {/* Your card content goes here */}
+            <div className="bg-[#f0f0f0] p[16px] z-[1] h-[150px] lg:h-[60vh]"></div>
+          </div>
+          {/*  */}
+          <div className="h-[30vh] lg:h-[40vh] flex flex-col justify-between   lg:w-[40%]">
+            <div className="w-full relative  overflow-hidden rounded-[8px]">
+              {shimmer}
+              {/* Your card content goes here */}
+              <div className="bg-[#f0f0f0] p[16px] z-[1] h-[10px]"></div>
+            </div>
+            {/*  */}
+            <div className="w-full relative  overflow-hidden rounded-[8px]">
+              {shimmer}
+              {/* Your card content goes here */}
+              <div className="bg-[#f0f0f0] p[16px] z-[1] h-[10px]"></div>
+            </div>
+            {/*  */}
+            <div className="w-full relative mb-[30px]  overflow-hidden rounded-[8px]">
+              {shimmer}
+              {/* Your card content goes here */}
+              <div className="bg-[#f0f0f0] p[16px] z-[1] h-[10px]"></div>
+            </div>
+            {/*  */}
+            <div className="w-full relative mb-[16px] overflow-hidden rounded-[8px]">
+              {shimmer}
+              {/* Your card content goes here */}
+              <div className="bg-[#f0f0f0] p[16px] z-[1] h-[40px]"></div>
+            </div>
+          </div>
+        </div>
+      ) : (
         <div
-          style={{
-            backgroundColor: "white",
-            height: "20px",
-
-            zIndex: 1,
-          }}
-        ></div>
-      </div>
-      <div
-        style={{
-          width: "100%",
-          height: "10px",
-          position: "relative",
-          marginBottom: "10px",
-          overflow: "hidden",
-          borderRadius: "8px",
-        }}
-      >
-        {shimmer}
-        {/* Another set of details */}
-        <div
-          style={{
-            backgroundColor: "white",
-            height: "20px",
-
-            zIndex: 1,
-          }}
-        ></div>
-      </div>
-      {/*  */}
-      <div
-        style={{
-          width: "100%",
-          position: "relative",
-          height: "15px",
-          marginBottom: "16px",
-          overflow: "hidden",
-          borderRadius: "8px",
-        }}
-      >
-        {shimmer}
-        {/* Another set of details */}
-        <div
-          style={{
-            backgroundColor: "white",
-            padding: "16px",
-            zIndex: 1,
-          }}
-        ></div>
-      </div>
-    </div>
+          className={` flex flex-col justify-between w-full relative overflow-hidden rounded-[8px]`}
+        >
+          <div className="w-full relative mb-[16px] overflow-hidden rounded-[8px]">
+            {shimmer}
+            {/* Your card content goes here */}
+            <div className="bg-[#f0f0f0] p[16px] z-[1] h-[100px]"></div>
+          </div>
+          {/*  */}
+          <div className="w-full relative mb-[16px] overflow-hidden rounded-[8px]">
+            {shimmer}
+            {/* Your card content goes here */}
+            <div className="bg-[#f0f0f0] p[16px] z-[1] h-[10px]"></div>
+          </div>
+          {/*  */}
+          <div className="w-full relative mb-[16px] overflow-hidden rounded-[8px]">
+            {shimmer}
+            {/* Your card content goes here */}
+            <div className="bg-[#f0f0f0] p[16px] z-[1] h-[10px]"></div>
+          </div>
+          {/*  */}
+        </div>
+      )}
+    </>
   );
 };
 

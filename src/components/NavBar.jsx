@@ -10,10 +10,11 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../config/firebase";
 import { Link, useNavigate } from "react-router-dom";
 import Cart from "../assets/cart.png";
-import Pin from "../assets/pin.png";
-import Arrow from "../assets/arrow.png";
 import { useSelector } from "react-redux";
-
+import { FiMapPin } from "react-icons/fi";
+import { IoMdArrowDropdown } from "react-icons/io";
+import { RiMenu5Fill } from "react-icons/ri";
+import { TbBrandAmazon } from "react-icons/tb";
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMenuOpen2, setIsMenuOpen2] = useState(false);
@@ -63,7 +64,7 @@ const NavBar = () => {
   const toggleIsNavOpen = () => setIsNavOpen((cur) => !cur);
 
   return (
-    <div className="mx-auto  mt-4 shadow-none rounded-none border-none ">
+    <div className="mx-auto  pt-4 shadow-none rounded-none border-none text ">
       <div className="relative mx-auto flex items-center justify-between text-dark-100 px-2  sm:p-0">
         <div
           onClick={toggleIsNavOpen}
@@ -85,32 +86,28 @@ const NavBar = () => {
               />
             </svg>
           ) : (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3.75 9h16.5m-16.5 6.75h16.5"
-              />
-            </svg>
+            <RiMenu5Fill size={23} />
           )}
         </div>
 
-        <Link to="/" className="flex text-[22px] items-center font-[800]">
+        <Link
+          to="/"
+          className="relative flex text-[22px] items-center font-[800]"
+        >
+          <div>
+            <TbBrandAmazon
+              className="absolute top-[14px] left-4 text-primary"
+              size={30}
+            />
+          </div>
           ZUTTO
         </Link>
         <div className="hidden md:flex items-center">
-          <button className="p-2 text-[11px] text-gray-500 text-start">
+          <button className="p-2 text-[11px]  text-start">
             <span className="ml-[2px]"> Deliver to</span>
             <br />
             <div className="flex items-center font-bold">
-              <img src={Pin} alt="Pin" className="w-3" />
+              <FiMapPin />
               <select
                 name="location"
                 id="location"
@@ -135,27 +132,27 @@ const NavBar = () => {
             <MenuHandler>
               <button
                 color="blue-gray"
-                className="text-[11px] tracking-widest sm:text-[11px] text-start text-gray-500 p-2"
+                className="text-[11px] tracking-widest sm:text-[11px] text-start  p-2"
               >
                 Hello,
                 {email ? <span className="font-bold">{email}</span> : "sign in"}
                 <br />
                 <div className="flex items-center gap-2">
                   Account & List
-                  <img src={Arrow} alt="Arrow" width={13} />
+                  <IoMdArrowDropdown size={20} />
                 </div>
               </button>
             </MenuHandler>
             <MenuList className="p-2">
-              <MenuItem className="pl-0 focus:bg-transparent">
+              <MenuItem className="pl-0 focus:bg-transparent text-black">
                 <Link to="/Profile">Profile</Link>
               </MenuItem>
               <hr />
-              <MenuItem className="pl-0">
+              <MenuItem className="pl-0 focus:bg-transparent text-black">
                 <Link to="settings">Settings</Link>
               </MenuItem>
               <hr />
-              <MenuItem className="pl-0">
+              <MenuItem className="pl-0 focus:bg-transparent text-black">
                 <div onClick={logout}>Log out</div>
               </MenuItem>
             </MenuList>
@@ -180,7 +177,7 @@ const NavBar = () => {
       </div>
       <Collapse
         open={isNavOpen}
-        className="overflow-scroll  text-dark-d100 rounded mt-2 bg-white"
+        className="overflow-scroll  rounded mt-2 bg-gray-100 "
       >
         <div className="flex flex-col md:hidden">
           <Menu open={isMenuOpen2} handler={setIsMenuOpen2}>
@@ -198,29 +195,30 @@ const NavBar = () => {
                 <br />
                 <div className="flex items-center gap-2">
                   Account & List
-                  <img src={Arrow} alt="Arrow" width={13} />
+                  <IoMdArrowDropdown size={17} />
                 </div>
               </button>
             </MenuHandler>
             <MenuList className="absolute top-[-100px]">
-              <MenuItem className="pl-0 focus:bg-transparent">
+              <MenuItem className="pl-0 focus:bg-transparent text-black">
                 <Link to="/Profile">Profile</Link>
               </MenuItem>
               <hr />
-              <MenuItem className="pl-0">
+              <MenuItem className="pl-0 focus:bg-transparent text-black">
                 <Link to="settings">Settings</Link>
               </MenuItem>
               <hr />
-              <MenuItem className="pl-0">
+              <MenuItem className="pl-0 focus:bg-transparent text-black">
                 <div onClick={logout}>Log out</div>
               </MenuItem>
             </MenuList>
           </Menu>
+          <span className="bg-gray-200 h-[1px] w-full" />
           <button className="p-2 text-[11px] text-start">
             <span className="ml-[2px]"> Deliver to</span>
             <br />
             <div className="flex items-center font-bold">
-              <img src={Pin} alt="Pin" className="w-3" />
+              <FiMapPin />
               <select
                 name="location"
                 id="location"
@@ -236,10 +234,11 @@ const NavBar = () => {
               </select>
             </div>
           </button>
+          <span className="bg-gray-200 h-[1px] w-full" />
           <input
             type="search"
             placeholder="Search"
-            className="border px-4 h-[35px] text-[15px] rounded-md outline-none m-1"
+            className=" px-4 h-[35px] text-[15px] rounded-md outline-none m-1"
           />
         </div>
       </Collapse>
