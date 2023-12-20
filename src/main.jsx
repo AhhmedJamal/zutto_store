@@ -15,12 +15,12 @@ import CheckInternet from "./components/CheckInternet.jsx";
 import store from "./store/store.js";
 import Home from "./pages/Home.jsx";
 import Settings from "./pages/Settings.jsx";
-import Profile from "./pages/Profile.jsx";
 import CategoryPage from "./pages/CategoryPage.jsx";
 import Favorite from "./pages/Favorite.jsx";
 import DetailsProduct from "./pages/DetailsProduct.jsx";
 import Orders from "./pages/Orders.jsx";
 import Checkout from "./pages/Checkout.jsx";
+import Account from "./pages/Account.jsx";
 
 // Create BrowserRouter
 const router = createBrowserRouter([
@@ -42,8 +42,8 @@ const router = createBrowserRouter([
         element: <Settings />,
       },
       {
-        path: "profile",
-        element: <Profile />,
+        path: "account",
+        element: <Account />,
       },
       {
         path: "favorite",

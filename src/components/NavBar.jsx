@@ -123,16 +123,7 @@ const NavBar = () => {
               </select>
             </div>
           </button>
-          <Link
-            to="orders"
-            className="text-[13px] font-bold flex flex-col justify-center items-center mt-1 mx-3"
-          >
-            <img
-              src="https://cdn-icons-png.flaticon.com/128/1008/1008014.png"
-              width={17}
-            />
-            Orders
-          </Link>
+         
           <input
             type="search"
             placeholder="Search"
@@ -155,7 +146,7 @@ const NavBar = () => {
             </MenuHandler>
             <MenuList className="p-2">
               <MenuItem className="pl-0 focus:bg-transparent text-black">
-                <Link to="profile">Profile</Link>
+                <Link to="/account">Account</Link>
               </MenuItem>
               <hr />
               <MenuItem className="pl-0 focus:bg-transparent text-black">
@@ -212,7 +203,7 @@ const NavBar = () => {
             </MenuHandler>
             <MenuList className="absolute top-[-100px]">
               <MenuItem className="pl-0 focus:bg-transparent text-black">
-                <Link to="/Profile">Profile</Link>
+                <Link to="/account">Account</Link>
               </MenuItem>
               <hr />
               <MenuItem className="pl-0 focus:bg-transparent text-black">

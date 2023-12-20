@@ -13,6 +13,11 @@
 *::-webkit-scrollbar {
   display: none;
 }
+
+body {
+  background-color: #f7f7fa;
+}
+
 /* Show the scrollbar for elements with the class .cartScroll */
 .cartScroll {
   overflow-x: hidden;
@@ -38,6 +43,7 @@
   scrollbar-color: #42b89a white;
 }
 
-body {
-  background-color: #f7f7fa;
+.active {
+  color: #42b89a !important;
+  
 }

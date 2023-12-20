@@ -44,7 +44,7 @@ const Cart = () => {
         </span>
 
         {cart.length !== 0 ? (
-          <div className="  flex flex-col place-items-center gap-3 sm:mx-0 mx-2 mt-2 sm:h-[62vh] h-[50vh]  overflow-scroll cartScroll">
+          <div className="  flex flex-col place-items-center gap-3 sm:mx-0 mx-2 mt-2 max-h-[62vh] sm:h-[g50vh]  overflow-scroll cartScroll">
             {cart.map((product) => {
               return <CartProduct key={product.id} product={product} />;
             })}
