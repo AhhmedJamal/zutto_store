@@ -1,10 +1,11 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CartEmpty from "../assets/emptyCart.svg";
 
 import CartProduct from "../components/CartProduct";
 import CartCheckout from "../components/CartCheckout";
 
 import { useEffect } from "react";
+import { getFromLocal } from "../store/cart/cartSlice";
 
 const Cart = () => {
   function calculateTotalPrice(cart) {
@@ -27,11 +28,11 @@ const Cart = () => {
 
   const cart = useSelector((state) => state.cart.items);
   const totalWithDiscount = calculateTotalPrice(cart);
+  const dispatch = useDispatch();
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem("shoppingCart")) || {};
-    console.log(items);
-    // addToCart(items);
-  }, []);
+    dispatch(getFromLocal(items));
+  }, [dispatch]);
   return (
     <div className="mt-4 flex flex-col lg:flex-row justify-between mb-10 relative ">
       <div className="w-[100%] lg:w-[58%] ">

@@ -3,14 +3,21 @@ import { useParams } from "react-router-dom";
 import Product from "../components/Product";
 import Shimmer from "../components/Shimmer";
 import CarouselDefault from "../components/Carousel";
+import { getFromLocal } from "../store/cart/cartSlice";
+import { useDispatch } from "react-redux";
 const CategoryPage = () => {
   const { name } = useParams();
   const [products, setProducts] = useState([]);
+
+  const dispatch = useDispatch();
+  useEffect(() => {}, [dispatch]);
   useEffect(() => {
     fetch(`https://dummyjson.com/products/category/${name}`)
       .then((res) => res.json())
       .then((data) => setProducts(data.products));
-  }, [name]);
+    const items = JSON.parse(localStorage.getItem("shoppingCart")) || {};
+    dispatch(getFromLocal(items));
+  }, [name, dispatch]);
 
   return (
     <>

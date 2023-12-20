@@ -1,12 +1,14 @@
 import { useEffect } from "react";
 import ProductList from "../components/ProductList";
+import { useDispatch } from "react-redux";
+import { getFromLocal } from "../store/cart/cartSlice";
 
 const Home = () => {
+  const dispatch = useDispatch();
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem("shoppingCart")) || {};
-    console.log(items);
-    // addToCart(items);
-  }, []);
+    dispatch(getFromLocal(items));
+  }, [dispatch]);
   return (
     <section>
       <ProductList />
