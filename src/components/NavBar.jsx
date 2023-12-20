@@ -64,7 +64,7 @@ const NavBar = () => {
   const toggleIsNavOpen = () => setIsNavOpen((cur) => !cur);
 
   return (
-    <div className="mx-auto  pt-4 shadow-none rounded-none border-none text ">
+    <nav className=" fixed  z-10 pt-4 p-2 rounded-none border-none text bg-white w-full container sm:shadow-none shadow">
       <div className="relative mx-auto flex items-center justify-between text-dark-100 px-2  sm:p-0">
         <div
           onClick={toggleIsNavOpen}
@@ -77,7 +77,7 @@ const NavBar = () => {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6"
+              className="w-7"
             >
               <path
                 strokeLinecap="round"
@@ -86,7 +86,7 @@ const NavBar = () => {
               />
             </svg>
           ) : (
-            <RiMenu5Fill size={23} />
+            <RiMenu5Fill size={30} />
           )}
         </div>
 
@@ -123,6 +123,16 @@ const NavBar = () => {
               </select>
             </div>
           </button>
+          <Link
+            to="orders"
+            className="text-[13px] font-bold flex flex-col justify-center items-center mt-1 mx-3"
+          >
+            <img
+              src="https://cdn-icons-png.flaticon.com/128/1008/1008014.png"
+              width={17}
+            />
+            Orders
+          </Link>
           <input
             type="search"
             placeholder="Search"
@@ -145,7 +155,7 @@ const NavBar = () => {
             </MenuHandler>
             <MenuList className="p-2">
               <MenuItem className="pl-0 focus:bg-transparent text-black">
-                <Link to="/Profile">Profile</Link>
+                <Link to="profile">Profile</Link>
               </MenuItem>
               <hr />
               <MenuItem className="pl-0 focus:bg-transparent text-black">
@@ -158,6 +168,7 @@ const NavBar = () => {
             </MenuList>
           </Menu>
         </div>
+
         <Link
           to="/cart"
           type="button"
@@ -165,21 +176,21 @@ const NavBar = () => {
         >
           <div className="relative">
             <span
-              className={`text-[7px] font-bold transition-all ${
+              className={`text-[12px] font-bold transition-all ${
                 cartItems.length == 0 ? "scale-0" : "scale-100"
-              }  absolute top-[-10px] left-3 flex justify-center items-center bg-dark-100 text-white px-1 rounded-full`}
+              }  absolute top-[-10px] left-3 flex justify-center items-center bg-primary text-white px-1 rounded-full`}
             >
               {cartItems.length !== 0 && cartItems.length}
             </span>
-            <img src={Cart} alt="cart" className="w-5 " />
+            <img src={Cart} alt="cart" className="w-6 " />
           </div>
         </Link>
       </div>
       <Collapse
         open={isNavOpen}
-        className="overflow-scroll  rounded mt-2 bg-gray-100 "
+        className="overflow-scroll rounded mt-2 bg-gray-100 "
       >
-        <div className="flex flex-col md:hidden">
+        <div className="flex flex-col  md:hidden">
           <Menu open={isMenuOpen2} handler={setIsMenuOpen2}>
             <MenuHandler>
               <button
@@ -235,6 +246,17 @@ const NavBar = () => {
             </div>
           </button>
           <span className="bg-gray-200 h-[1px] w-full" />
+          <Link
+            to="orders"
+            className="text-[13px] font-bold flex gap-2 justify-start items-center self-start m-2 w-full"
+          >
+            <img
+              src="https://cdn-icons-png.flaticon.com/128/1008/1008014.png"
+              width={20}
+            />
+            Orders
+          </Link>
+          <span className="bg-gray-200 h-[1px] w-full" />
           <input
             type="search"
             placeholder="Search"
@@ -242,7 +264,7 @@ const NavBar = () => {
           />
         </div>
       </Collapse>
-    </div>
+    </nav>
   );
 };
 

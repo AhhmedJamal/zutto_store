@@ -13,11 +13,31 @@
 *::-webkit-scrollbar {
   display: none;
 }
+/* Show the scrollbar for elements with the class .cartScroll */
+.cartScroll {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
 
-body {
+/* For WebKit-based browsers (Chrome, Safari) */
+.cartScroll::-webkit-scrollbar {
+  display: block;
+}
+
+.cartScroll::-webkit-scrollbar-track {
   background-color: white;
 }
 
-.btnBar {
-  box-shadow: 0px -1px 10px 0px rgba(32, 32, 32, 0.176);
+.cartScroll::-webkit-scrollbar-thumb {
+  background-color: #42b89a;
+  border-radius: 10%;
+}
+
+/* For Firefox */
+.cartScroll {
+  scrollbar-color: #42b89a white;
+}
+
+body {
+  background-color: #f7f7fa;
 }

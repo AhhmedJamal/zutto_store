@@ -39,7 +39,7 @@ const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <div className="container m-auto  overflow-y-scroll h-[100vh] pb-10">
+    <div className="container m-auto overflow-y-scroll h-[100vh] pb-10 sm:pb-0">
       <ToastContainer />
       <Model />
       <NavBar />

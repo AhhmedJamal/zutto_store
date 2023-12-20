@@ -18,7 +18,6 @@ const DetailsProduct = () => {
   };
 
   const handleCart = () => {
-   
     dispatch(addToCart(products));
   };
   useEffect(() => {
@@ -38,7 +37,7 @@ const DetailsProduct = () => {
       />
       {products.length !== 0 ? (
         <div>
-          <div className="p-8 pt-0 mt-4 lg:flex lg:justify-between  lg:mt-[80px] ">
+          <div className="p-3  pt-0 mt-4 lg:flex lg:justify-evenly items-center lg:mt-[10px]  ">
             <Carousel
               className="rounded-xl  w-full h-[200px] bg-reds-300 lg:w-[600px] mb-3"
               navigation={({ setActiveIndex, activeIndex, length }) => (
@@ -115,9 +114,12 @@ const DetailsProduct = () => {
                 );
               })}
             </Carousel>
-            <div className="lg:w-[300px]">
-              <h1 className="font-bold text-[20px]">{products.title}</h1>
-              <p className="text-[13px]">
+            <div className="lg:w-[300px]  p-4  pb-0 rounded ">
+              <h1 className="font-bold text-[20px]">{products.brand}</h1>
+              <p className="text-gray-600 text-[12px] lg:text-[15px] leading-4 line-clamp-none my-2">
+                {products.description}
+              </p>
+              <p className="text-[13px] lg:text-[20px] ">
                 $
                 {calculateDiscountedPrice(
                   products.price,
@@ -126,7 +128,6 @@ const DetailsProduct = () => {
                 <del>${products.price} </del>
               </p>
 
-              <p className="text-[12px]">brand:{products.brand}</p>
               <p className="text-[12px]">
                 stock:
                 <span
@@ -141,9 +142,7 @@ const DetailsProduct = () => {
                 <p className="text-[16px] pt-[2px] mr-2">{products.rating}</p>
                 <GoStarFill className="text-orange-400" />
               </div>
-              <p className="text-gray-600 text-[12px] leading-4 mt-2">
-                {products.description}
-              </p>
+
               <button
                 onClick={handleCart}
                 className="bg-primary w-full text-white rounded-md my-3 p-1"

@@ -23,17 +23,17 @@ const CarouselDefault = () => {
       <img
         src="https://f.nooncdn.com/mpcms/EN0003/assets/98772ec4-a956-4f13-bf2b-050a5b034e35.png?format=avif"
         alt="image 1"
-        className="h-full w-full object-covedr"
+        className="h-full w-full "
       />
       <img
         src="https://f.nooncdn.com/mpcms/EN0003/assets/a85cf465-f5d7-476e-8fb1-9e3af8d769fa.png?format=avif"
         alt="image 2"
-        className="h-full w-full object-covedr"
+        className="h-full w-full "
       />
       <img
         src="https://f.nooncdn.com/mpcms/EN0003/assets/7bd86bfc-0461-48c9-aecc-fb54600ce369.png?format=avif"
         alt="image 3"
-        className="h-full w-full object-covedr"
+        className="h-full w-full "
       />
     </Carousel>
   );

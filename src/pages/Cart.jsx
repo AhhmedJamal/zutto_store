@@ -2,6 +2,9 @@ import { useSelector } from "react-redux";
 import CartEmpty from "../assets/emptyCart.svg";
 
 import CartProduct from "../components/CartProduct";
+import CartCheckout from "../components/CartCheckout";
+
+import { useEffect } from "react";
 
 const Cart = () => {
   function calculateTotalPrice(cart) {
@@ -21,48 +24,41 @@ const Cart = () => {
 
     return totalPrice;
   }
-  function getPricesFromProducts(products, price) {
-    return products.reduce((total, product) => {
-      const propertyValue = product && product[price] ? product[price] : 0;
-      return total + propertyValue;
-    }, 0);
-  }
+
   const cart = useSelector((state) => state.cart.items);
   const totalWithDiscount = calculateTotalPrice(cart);
-  const total = getPricesFromProducts(cart, "price");
-
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem("shoppingCart")) || {};
+    console.log(items);
+    // addToCart(items);
+  }, []);
   return (
-    <div>
-      {cart.length !== 0 ? (
-        <div className="  grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:mx-0  pb-3 mt-2">
-          {cart.map(({ id, title, price, thumbnail, discountPercentage }) => {
-            return (
-              <CartProduct
-                id={id}
-                key={id}
-                img={thumbnail}
-                title={title}
-                price={price}
-                discount={discountPercentage}
-              />
-            );
-          })}
-          <div className="bg-white p-2 border-2">
-            total: ${totalWithDiscount.toFixed(0)}{" "}
-            <del className="text-gray-600 text-[13px]">${total}</del>
+    <div className="mt-4 flex flex-col lg:flex-row justify-between mb-10 relative ">
+      <div className="w-[100%] lg:w-[58%] ">
+        <span className="text-[13px] md:text-[17px] font-bold sm:ml-0 ml-2 ">
+          Shopping Cart:
+          <span className="text-gray-500 text-[13px]">
+            (items {cart.length})
+          </span>
+        </span>
+
+        {cart.length !== 0 ? (
+          <div className="  flex flex-col place-items-center gap-3 sm:mx-0 mx-2 mt-2 sm:h-[62vh] h-[50vh]  overflow-scroll cartScroll">
+            {cart.map((product) => {
+              return <CartProduct key={product.id} product={product} />;
+            })}
           </div>
-          <button className="bg-primary text-white p-1 rounded-md">
-            CheckOut
-          </button>
-        </div>
-      ) : (
-        <div className="flex flex-col  items-center justify-center h-[60vh] m-auto">
-          <img src={CartEmpty} alt="cart" className="w-[200px]  " />
-          <p className="font-bold text-[17px]">Your cart is empty !!</p>
-        </div>
-      )}
+        ) : (
+          <div className="flex flex-col  items-center justify-center h-[60vh] m-auto">
+            <img src={CartEmpty} alt="cart" className="w-[200px]  " />
+            <p className="font-bold text-[17px]">Your cart is empty !!</p>
+          </div>
+        )}
+      </div>
+      <CartCheckout cart={cart.length} total={totalWithDiscount.toFixed(2)} />
     </div>
   );
 };
 
 export default Cart;
+// sm:h-[62vh] h-[34vh]  overflow-scroll

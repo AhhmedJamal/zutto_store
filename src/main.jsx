@@ -19,6 +19,8 @@ import Profile from "./pages/Profile.jsx";
 import CategoryPage from "./pages/CategoryPage.jsx";
 import Favorite from "./pages/Favorite.jsx";
 import DetailsProduct from "./pages/DetailsProduct.jsx";
+import Orders from "./pages/Orders.jsx";
+import Checkout from "./pages/Checkout.jsx";
 
 // Create BrowserRouter
 const router = createBrowserRouter([
@@ -48,6 +50,10 @@ const router = createBrowserRouter([
         element: <Favorite />,
       },
       {
+        path: "orders",
+        element: <Orders />,
+      },
+      {
         path: "/:name",
         element: <CategoryPage />,
       },
@@ -56,6 +62,10 @@ const router = createBrowserRouter([
         element: <DetailsProduct />,
       },
     ],
+  },
+  {
+    path: "checkout",
+    element: <Checkout />,
   },
   {
     path: "login",
