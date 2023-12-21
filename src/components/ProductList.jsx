@@ -2,12 +2,19 @@ import { useEffect, useState } from "react";
 import Product from "../components/Product";
 import Shimmer from "./Shimmer";
 import CarouselDefault from "./Carousel";
+import { db } from "../config/firebase";
+import { collection, getDocs } from "firebase/firestore";
+
 const ProductList = () => {
   const [products, setProducts] = useState([]);
+  const CollectionsRef = collection(db, "/phones");
+  const getData = async () => {
+    const data = await getDocs(CollectionsRef);
+    setProducts(data?.docs?.map((doc) => ({ ...doc.data(), id: doc.id })));
+  };
   useEffect(() => {
-    fetch("https://dummyjson.com/products")
-      .then((res) => res.json())
-      .then((data) => setProducts(data.products));
+    getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <>

@@ -2,29 +2,39 @@ import { Carousel, IconButton } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { GoStarFill } from "react-icons/go";
-import { addToCart } from "../store/cart/cartSlice";
+import { addToCart, getFromLocal } from "../store/cart/cartSlice";
 import { useParams, useNavigate } from "react-router-dom";
 import ShimmerDetails from "../components/Shimmer";
 import { IoMdArrowBack } from "react-icons/io";
+import { db } from "../config/firebase";
+import { collection, getDocs } from "firebase/firestore";
 const DetailsProduct = () => {
   const [products, setProducts] = useState({});
   const router = useNavigate();
-  const { id } = useParams();
+  const { id, name } = useParams();
   const dispatch = useDispatch();
-  const calculateDiscountedPrice = (originalPrice, discountPercentage) => {
-    const discountAmount = (originalPrice * discountPercentage) / 100;
-    const discountedPrice = originalPrice - discountAmount;
-    return parseFloat(discountedPrice).toFixed(0);
-  };
 
   const handleCart = () => {
     dispatch(addToCart(products));
   };
+
+  const CollectionsRef = collection(db, name, id);
+  console.log(collection);
+  const getData = async () => {
+    const data = await getDocs(CollectionsRef);
+
+    if (data.exists()) {
+      const data = data.data();
+      setProducts(data);
+    }
+  };
   useEffect(() => {
-    fetch(`https://dummyjson.com/products/${id}`)
-      .then((res) => res.json())
-      .then((data) => setProducts(data));
-  }, [id]);
+    console.log(products);
+    getData();
+    const items = JSON.parse(localStorage.getItem("shoppingCart")) || {};
+    dispatch(getFromLocal(items));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id, dispatch]);
 
   return (
     <>
@@ -120,12 +130,7 @@ const DetailsProduct = () => {
                 {products.description}
               </p>
               <p className="text-[13px] lg:text-[20px] ">
-                $
-                {calculateDiscountedPrice(
-                  products.price,
-                  products.discountPercentage
-                )}{" "}
-                <del>${products.price} </del>
+                $ <del>${products.price} </del>
               </p>
 
               <p className="text-[12px]">

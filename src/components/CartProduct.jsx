@@ -7,21 +7,12 @@ import { useState } from "react";
 const CartProduct = ({ product }) => {
   const [count, setCount] = useState(0);
   // eslint-disable-next-line react/prop-types
-  const { id, thumbnail, title, price, discountPercentage, description } =
-    product;
+  const { uid, img, title, price, priceDis, description } = product;
   const dispatch = useDispatch();
-  const calculateDiscountedPrice = (originalPrice, discountPercentage) => {
-    const discountAmount = (originalPrice * discountPercentage) / 100;
-    const discountedPrice = originalPrice - discountAmount;
-    return parseFloat(discountedPrice).toFixed(0);
-  };
+
   return (
     <div className=" flex items-center gap-6 p-4  justify-around bg-white border w-full  ">
-      <img
-        src={thumbnail}
-        alt="img-product"
-        className=" w-[100px] sm:w-[150px]"
-      />
+      <img src={img} alt="img-product" className=" w-[100px] sm:w-[150px]" />
 
       <div className="flex flex-col sm:flex-row ">
         <div className="flex flex-col justify-around  sd: w-full sm:w-[200px]  ">
@@ -30,7 +21,10 @@ const CartProduct = ({ product }) => {
           </h1>
           <p className="leading-4 text-[14px] ">{description}</p>
           <b className="mt-2">
-            ${calculateDiscountedPrice(price, discountPercentage)}{" "}
+            ${price}{" "}
+            {priceDis && (
+              <del className="text-[12px] text-gray-500">${priceDis}</del>
+            )}
           </b>
           <p className="flex items-center text-[12px] text-gray-600 mt-2 tracking-tighter">
             <img
@@ -69,7 +63,7 @@ const CartProduct = ({ product }) => {
           </select>
           <button
             className="flex items-center text-[13px] font-bold text-gray-600 "
-            onClick={() => dispatch(removeFromCart({ id: id }))}
+            onClick={() => dispatch(removeFromCart({ id: uid }))}
           >
             <RiDeleteBinLine className="text-[16px] text-gray-600 mr-1" />
             Remove

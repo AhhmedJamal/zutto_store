@@ -11,7 +11,7 @@ import { addToCart } from "../store/cart/cartSlice";
 // eslint-disable-next-line react/prop-types
 const Product = ({ product }) => {
   // eslint-disable-next-line react/prop-types
-  const { id, thumbnail, price, rating, description } = product;
+  const { id, img, price, rating, description } = product;
 
   const [mark, setMark] = useState(false);
   const router = useNavigate();
@@ -26,7 +26,7 @@ const Product = ({ product }) => {
       className="
     rounded-none overflow-hidden hover:scale-95 shadow-md relative flex 
     justify-between transition duration-300 bg-white hover:bg-dark-100 text-black
-     hover:text-white group  h-[250px]"
+     hover:text-white group "
     >
       <div className="absolute right-[-55px] group-hover:right-0 transition-all bg-primary  rounded-tl rounded-bl  text-white p-3 flex flex-col">
         <button
@@ -38,7 +38,7 @@ const Product = ({ product }) => {
         </button>
         <button
           onClick={() => {
-            router(`${`product/${id}`}`);
+            router(`${`${id}`}`);
           }}
         >
           <FaRegEye size={25} className="mb-5" />
@@ -51,12 +51,11 @@ const Product = ({ product }) => {
           )}
         </button>
       </div>
-      <img
-        src={thumbnail}
-        alt="card-image"
-        className=" w-full h-[120px] object-cover "
-      />
-
+      <img src={img} alt="card-image" className=" w-[120px] m-auto" />
+      <div className="flex items-center  px-[6px] p-[1px] rounded ml-3">
+        <span className="text-[13px] font-bold mr-1">{rating}</span>
+        <GoStarFill className="text-orange-400" />
+      </div>
       <CardBody className="p-4">
         <p className="mb-2 text-[11px] text-gray-600 overflow-hidden line-clamp-2">
           {description}
@@ -64,12 +63,8 @@ const Product = ({ product }) => {
 
         <div className="flex items-center justify-between mt-2d">
           <div>
-            <span className="font-normal text-[11px]">$</span>
-            <span className="font-[800] ">{price}</span>
-          </div>
-          <div className="flex items-center  px-[6px] p-[1px] rounded">
-            <span className="text-[13px] font-bold mr-1">{rating}</span>
-            <GoStarFill className="text-orange-400" />
+            <span className="font-normal text-[10px]">EPG</span>
+            <span className="font-[800]"> {price}</span>
           </div>
         </div>
       </CardBody>

@@ -3,33 +3,11 @@ import { Link } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 const Categories = () => {
-  const [path] = useState([
-    "/",
-    "smartphones",
-    "laptops",
-    "fragrances",
-    "automotive",
-    "lighting",
-    "skincare",
-    "home-decoration",
-    "furniture",
-    "groceries",
-  ]);
-  const [categories] = useState([
-    "All",
-    "Phones",
-    "Laptops",
-    "Fragrances",
-    "Automotive",
-    "Lighting",
-    "Skincare",
-    "Decoration",
-    "Furniture",
-    "Groceries",
-  ]);
+  const [path] = useState(["/", "phones", "home", "electroics"]);
+  const [categories] = useState(["All Categories", "Phones", "Home", "Electronics"]);
 
   return (
-    <div className="flex justify-between gap-4 overflow-y-scroll h-[40px]  px-2  border mt-[75px] sm:mt-[93px] mb-1 bg-white">
+    <div className="flex justify-between gap-4 overflow-y-scroll h-[40px]  px-2  border mt-[72px] sm:mt-[93px]  bg-white">
       {categories &&
         categories.map((item, index) => {
           return (

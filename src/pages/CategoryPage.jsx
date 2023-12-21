@@ -5,18 +5,24 @@ import Shimmer from "../components/Shimmer";
 import CarouselDefault from "../components/Carousel";
 import { getFromLocal } from "../store/cart/cartSlice";
 import { useDispatch } from "react-redux";
+import { db } from "../config/firebase";
+import { collection, getDocs } from "firebase/firestore";
 const CategoryPage = () => {
   const { name } = useParams();
   const [products, setProducts] = useState([]);
-
   const dispatch = useDispatch();
-  useEffect(() => {}, [dispatch]);
+
+  const CollectionsRef = collection(db, `/${name}`);
+  const getData = async () => {
+    const data = await getDocs(CollectionsRef);
+    setProducts(data?.docs?.map((doc) => ({ ...doc.data(), id: doc.id })));
+  };
+
   useEffect(() => {
-    fetch(`https://dummyjson.com/products/category/${name}`)
-      .then((res) => res.json())
-      .then((data) => setProducts(data.products));
+    getData();
     const items = JSON.parse(localStorage.getItem("shoppingCart")) || {};
     dispatch(getFromLocal(items));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name, dispatch]);
 
   return (

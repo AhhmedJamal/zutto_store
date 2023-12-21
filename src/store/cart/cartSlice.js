@@ -18,11 +18,11 @@ const cartSlice = createSlice({
       localStorage.setItem("shoppingCart", JSON.stringify(cart));
     },
     removeFromCart: (state, action) => {
-      state.items = state.items.filter((item) => item.id !== action.payload.id);
+      state.items = state.items.filter((item) => item.uid !== action.payload.id);
 
       let cart = JSON.parse(localStorage.getItem("shoppingCart")) || [];
       let index = cart.findIndex(
-        (cartItem) => cartItem.id === action.payload.id
+        (cartItem) => cartItem.uid === action.payload.id
       );
       if (index !== -1) {
         cart.splice(index, 1);

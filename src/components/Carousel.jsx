@@ -3,7 +3,7 @@ import { Carousel } from "@material-tailwind/react";
 const CarouselDefault = () => {
   return (
     <Carousel
-      className=" mt- sm:h-fit h-[100px] "
+      className=" mt-[6px] sm:h-fit h-[100px] "
       autoplay={true}
       loop={true}
       navigation={({ setActiveIndex, activeIndex, length }) => (
@@ -21,17 +21,27 @@ const CarouselDefault = () => {
       )}
     >
       <img
-        src="https://f.nooncdn.com/mpcms/EN0003/assets/98772ec4-a956-4f13-bf2b-050a5b034e35.png?format=avif"
+        src="https://f.nooncdn.com/mpcms/EN0003/assets/be624cc1-e554-4feb-8e46-feba65ab9bba.png?format=avif"
         alt="image 1"
         className="h-full w-full "
       />
       <img
-        src="https://f.nooncdn.com/mpcms/EN0003/assets/a85cf465-f5d7-476e-8fb1-9e3af8d769fa.png?format=avif"
+        src="https://f.nooncdn.com/mpcms/EN0003/assets/66d013e3-3502-4b49-bd1b-cbaae4eff1b4.png?format=avif"
         alt="image 2"
         className="h-full w-full "
       />
       <img
-        src="https://f.nooncdn.com/mpcms/EN0003/assets/7bd86bfc-0461-48c9-aecc-fb54600ce369.png?format=avif"
+        src="https://f.nooncdn.com/mpcms/EN0003/assets/17498f7d-bd94-468c-acd4-4a67ee52fd6a.png?format=avif"
+        alt="image 3"
+        className="h-full w-full "
+      />
+      <img
+        src="https://f.nooncdn.com/mpcms/EN0003/assets/47fecc11-490d-4039-a1ca-8b8962640ea4.png?format=avif"
+        alt="image 3"
+        className="h-full w-full "
+      />
+      <img
+        src="https://f.nooncdn.com/mpcms/EN0003/assets/33ba9c58-f2c4-4a3e-8bc6-95e419acb9db.png?format=avif"
         alt="image 3"
         className="h-full w-full "
       />
